@@ -34,7 +34,17 @@ def verifyRut(rutd):
   if(int(strRutd[1]) == dig):
     return jsonify({'isVerify': True})
 
-  return jsonify({'isVerify': False}) 
+  return jsonify({'isVerify': False})
+
+@app.route('/fullName/<string:nombres>/<string:apellidos>/<string:genero>', methods = ['GET'])
+def fullName(nombres, apellidos, genero):
+  if(genero=='M'):
+    fullName = 'Sr. '
+  if(genero=='F'):
+    fullName = 'Sra. '
+
+  fullName = fullName + nombres + ' ' + apellidos
+  return jsonify({'fullName': fullName.title()})
 
 
 # funcion driver
